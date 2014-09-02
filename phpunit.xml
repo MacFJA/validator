@@ -1,0 +1,11 @@
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
+        bootstrap="vendor/bin/phpunit"
+        >
+    <testsuites>
+        <testsuite name="MacFJA/Validator">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

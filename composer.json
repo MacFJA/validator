@@ -1,0 +1,30 @@
+{
+    "name": "macfja/validator",
+    "version": "0.0.1",
+    "description": "Validator is a simple way to validate a property or an object.",
+    "keywords": ["validator","value","object","annotation"],
+
+    "authors": [
+        {
+            "name": "MacFJA",
+            "role": "Developer"
+        }
+    ],
+
+    "require": {
+        "macfja/value-provider": "dev-master"
+    },
+
+    "require-dev": {
+        "doctrine/annotations": "~1.2",
+        "phpunit/phpunit": "4.1.*"
+    },
+
+    "suggest": {
+        "doctrine/annotations": "To use annotation to declare object validator and valid it"
+    },
+
+    "autoload": {
+        "psr-4": {"MacFJA\\Validator\\": "src/"}
+    }
+}
