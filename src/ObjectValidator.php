@@ -18,7 +18,7 @@ class ObjectValidator
     protected $alreadyValidate = false;
     protected $validatorList = array();
 
-    function __construct($object, $providerName = 'MacFJA\ValueProvider\MutatorAndPropertyProvider')
+    function __construct($object, $providerName = 'MacFJA\ValueProvider\GuessProvider')
     {
         $this->object = $object;
         $this->valueProvider = new $providerName();

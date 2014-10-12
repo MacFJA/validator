@@ -8,7 +8,7 @@ use MacFJA\Validator\Annotation\ValidatorInterface;
 
 class AnnotationValidator extends ObjectValidator {
 
-    function __construct($object, $providerName = 'MacFJA\ValueProvider\MutatorAndPropertyProvider')
+    function __construct($object, $providerName = 'MacFJA\ValueProvider\GuessProvider')
     {
         parent::__construct($object, $providerName);
 
