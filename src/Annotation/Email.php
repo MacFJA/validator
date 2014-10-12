@@ -5,6 +5,9 @@ namespace MacFJA\Validator\Annotation;
 /**
  * Class Email
  *
+ * Validate an email address against the RFC-2822 chapter 3.4.1
+ * @see https://tools.ietf.org/html/rfc2822#section-3.4.1
+ *
  * @Annotation
  * @Target({"PROPERTY"})
  *

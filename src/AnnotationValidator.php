@@ -6,6 +6,13 @@ namespace MacFJA\Validator;
 use Doctrine\Common\Annotations\AnnotationReader;
 use MacFJA\Validator\Annotation\ValidatorInterface;
 
+/**
+ * Class AnnotationValidator.
+ * Object Validator compatible with annotation.
+ *
+ * @author MacFJA
+ * @package MacFJA\Validator
+ */
 class AnnotationValidator extends ObjectValidator {
 
     function __construct($object, $providerName = 'MacFJA\ValueProvider\GuessProvider')
@@ -15,6 +22,9 @@ class AnnotationValidator extends ObjectValidator {
         $this->getAnnotationValidator();
     }
 
+    /**
+     * Get all annotation and add validators
+     */
     protected function getAnnotationValidator() {
         $reader = new AnnotationReader();
         $classReflection = new \ReflectionClass($this->object);

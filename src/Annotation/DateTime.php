@@ -5,6 +5,9 @@ namespace MacFJA\Validator\Annotation;
 /**
  * Class DateTime
  *
+ * Check if the property is a valid date.
+ * Can sanitize (transform string to DateTime object)
+ *
  * @Annotation
  * @Target({"PROPERTY"})
  *

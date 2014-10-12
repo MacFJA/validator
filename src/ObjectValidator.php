@@ -7,15 +7,34 @@ use MacFJA\Validator\Annotation\ValidatorInterface;
 use MacFJA\ValueProvider\ProviderInterface;
 use Doctrine\Common\Annotations\AnnotationReader;
 
+/**
+ * Class ObjectValidator.
+ * Validate an object with a list of validator.
+ *
+ * @author MacFJA
+ * @package MacFJA\Validator
+ */
 class ObjectValidator
 {
+    /**
+     * @var object
+     */
     protected $object;
+    /**
+     * @var array List of all errors
+     */
     protected $errors = array();
     /**
-     * @var ProviderInterface
+     * @var ProviderInterface The value provider to use
      */
     protected $valueProvider;
+    /**
+     * @var bool Indicate if the object have been already validate
+     */
     protected $alreadyValidate = false;
+    /**
+     * @var array List of all validator (group by property name)
+     */
     protected $validatorList = array();
 
     function __construct($object, $providerName = 'MacFJA\ValueProvider\GuessProvider')
@@ -24,6 +43,13 @@ class ObjectValidator
         $this->valueProvider = new $providerName();
     }
 
+    /**
+     * Add a validator
+     *
+     * @param string $propertyName Name of the property to validate
+     * @param ValidatorInterface $validator The validator object to use
+     * @return $this
+     */
     public function addValidator($propertyName, $validator)
     {
         if (!isset($this->validatorList[$propertyName])) {
@@ -33,6 +59,11 @@ class ObjectValidator
         return $this;
     }
 
+    /**
+     * Run each validator registered
+     *
+     * @return $this
+     */
     protected function doAllValidation()
     {
         if ($this->alreadyValidate) {
@@ -48,6 +79,8 @@ class ObjectValidator
     }
 
     /**
+     * Validate a property (run all its validators)
+     *
      * @param string $property
      */
     protected function doValidation($property)
@@ -63,6 +96,10 @@ class ObjectValidator
         }
     }
 
+    /**
+     * Return the number of found error during the validation
+     * @return int
+     */
     public function getErrorsCount()
     {
         $this->doAllValidation();
@@ -74,16 +111,39 @@ class ObjectValidator
         return $count;
     }
 
+    /**
+     * Indicate if the object is valid (<=> no error)
+     * @return bool
+     */
     public function isValid()
     {
         return $this->getErrorsCount() == 0;
     }
 
+    /**
+     * Return the list of errors.
+     * The resulted array have this form<pre>{
+     *     "property1": [
+     *         "Error number 1 for property1",
+     *         "Error number 2 for property1"
+     *     ],
+     *     "property2": [
+     *         "Error of property2"
+     *     ]
+     *     "property3": []
+     * }</pre>
+     *
+     * @return array
+     */
     public function getErrors()
     {
         return $this->doAllValidation()->errors;
     }
 
+    /**
+     * Sanitize (if possible) the object properties
+     * @return object
+     */
     public function getSanitizedObject()
     {
         $object = clone $this->object;
@@ -96,9 +156,11 @@ class ObjectValidator
     }
 
     /**
-     * @param mixed $object
-     * @param string $property
-     * @return mixed
+     * Sanitize (if possible) a property of the object (with the property's validators)
+     *
+     * @param mixed $object The object to sanitize
+     * @param string $property The name of the property to sanitize
+     * @return object
      */
     protected function sanitizeProperty($object, $property)
     {
