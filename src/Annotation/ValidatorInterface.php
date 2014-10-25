@@ -2,6 +2,14 @@
 
 namespace MacFJA\Validator\Annotation;
 
+/**
+ * Interface ValidatorInterface.
+ *
+ * Define all method that a validator MUST implement.
+ *
+ * @author MacFJA
+ * @package MacFJA\Validator\Annotation
+ */
 interface ValidatorInterface
 {
     /**

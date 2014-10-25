@@ -15,8 +15,7 @@ class AnnotationValidatorTest extends ObjectValidatorTest {
 
     static function setUpBeforeClass()
     {
-        $loader = require __DIR__.'/../vendor/autoload.php';
-        AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+        AnnotationValidator::registerAnnotations();
     }
 
     protected function getValidatorAndObject($toPopulate) {

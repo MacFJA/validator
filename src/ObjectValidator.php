@@ -37,6 +37,10 @@ class ObjectValidator
      */
     protected $validatorList = array();
 
+    /**
+     * @param mixed $object The object to validate
+     * @param string $providerName FQCN of the valid provider to use
+     */
     function __construct($object, $providerName = 'MacFJA\ValueProvider\GuessProvider')
     {
         $this->object = $object;

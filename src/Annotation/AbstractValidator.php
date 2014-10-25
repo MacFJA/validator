@@ -2,7 +2,15 @@
 
 namespace MacFJA\Validator\Annotation;
 
-
+/**
+ * Class AbstractValidator
+ *
+ * Model/Base class for validator.
+ * Implement most of validator logic
+ *
+ * @author MacFJA
+ * @package MacFJA\Validator\Annotation
+ */
 abstract class AbstractValidator implements ValidatorInterface
 {
     private $input;
@@ -47,6 +55,7 @@ abstract class AbstractValidator implements ValidatorInterface
      */
     public static function newValidator($input)
     {
+        /** @var ValidatorInterface $validator */
         $validator = new static();
         $validator->setInput($input);
         return $validator;

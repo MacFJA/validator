@@ -91,3 +91,15 @@ Somewhere in your code
     if (!$objectValidator->isValid()) {
         echo sprintf("You have %d error(s) in your object", $objectValidator->getErrorsCount());
     }
+
+## Notice About Annotation ##
+
+For annotation validator, you have to:
+
+ - add Doctrine Annotations library in your project (`doctrine/annotations`).
+ - add all annotations into the Doctrine Annotation Registry.
+
+You MUST add all annotations before use it.
+
+To do so you can call the function `AnnotationValidator::registerAnnotations()`.
+This function will add all default validator annotations into doctrine annotation registry.
